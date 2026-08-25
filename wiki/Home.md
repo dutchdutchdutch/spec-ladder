@@ -1,186 +1,125 @@
 # The Spec Ladder
 
-*One source of truth that coding agents can build from without guessing  and every every team member can read, correct, and steer without touching code.*
+**Problem: Source of truth confusion** kills team momentum which kills confidence, the remediations often more drift in debt beyond the codebase, in design, in specs, in PRDs, etc.
 
-We're doing a lot of building with coding agents. Agents are fast, literal, and tireless. Which means they amplify whatever we feed them. Feed them a crisp contract and they produce exactly what we meant. Feed them multiple overlapping and contradictory documents and they invent the gaps, then they implement one of the variants and we spend a week debating whether that was the right one.
+Coding agents are literal, and tireless, which means they amplify whatever we feed them. Feed them a crisp contract and they produce what we meant. Feed them multiple overlapping documents and they invent the gaps.
 
-This post suggests a structure of small, layered spec documents in a `spec/` folder to try, each owning one kind of truth.
+**Proposal: one `spec/` folder, layered by kind of truth** so coding agents build without guessing, and every team member can read, correct, and steer without touching code.
 
-## Why not one big PRD?
+**Our PRDs spawn** Designs, stories, Slack threads. Each a partial copy of the same feature, each drifting from the others. After a while nobody can say which one is authoritative, so the agent picks one, implements it. And if incorrect, we often spent days till the drift is uncovered and hours debating which source is the right one.
 
-PRDs are rarely read by others than the author. Transcribing PRDs into designs and stories can create drift, updates and questions are captured in slack for human comprehension but those don't make it back to the agent fast enough. Plus the size of each artifacts creates confusion about the source of truth, and prose is ambiguous in exactly the ways that hurt: one section says "session," another says "workout," the spec says explicit checkbox on the consent form the design has a slider and every reader, human or agent, resolves these conflicts differently.
+**The change.** One document per kind of truth. Seven layers, each added only when its specific pain shows up. A new major use case, component or feature, starts with three of them. Conventions, Vocabulary, and Scenarios; roughly three pages.
 
-The fix is to split the truth by *kind*, give each kind a home that stays load-bearing after release, and add each home only when its specific pain shows up. That's the ladder.
+**What's different for you.** Four of the seven layers are plain language and yours to edit. No design file, no dev ticket, no code.
+
+| You are | You edit directly | What it buys you |
+| :---- | :---- | :---- |
+| **Product** | `SCENARIOS.md` · `decisions/` | Scope debates end in a decision record, not a thread |
+| **Marketing / support** | `CONTENT.md` | Every user-facing string is a keyed line you change yourself |
+| **Design** | `DESIGN.md` | You absorb small deltas on your cadence; new patterns still route to you first |
+| **Domain expert** | `SCENARIOS.md` · `VOCABULARY.md` | Reading a journey and saying "that's not how it works" is our highest-leverage correction |
+| **Dev / tech lead** | `ONTOLOGY.md` · `spec/CLAUDE.md` | Schema and tests generate from the spec; behavior changes without spec changes bounce |
+
+---
+
+## The problem is drift, not the PRD
+
+PRDs are rarely read by anyone but the author — and neglect is the smaller issue. The PRD gets transcribed into designs and stories, every transcription drifts, and the corrections land in Slack, legible to humans and invisible to agents. Nothing routes back fast enough.
+
+Volume compounds it. When five artifacts describe the same feature, none of them is the source of truth. And prose is ambiguous exactly where it hurts: one section says "session," the next says "workout." The spec calls for an explicit checkbox on the consent form; the design shows a slider. Every reader, human or agent, resolves those conflicts differently.
+
+The fix: split truth by *kind*, give each kind a home that stays load-bearing after release, and add each home only when its specific pain shows up. That's the ladder.
 
 ## The ladder
 
-Read bottom-up: each layer is added only when its trigger fires, never on principle. Every layer carries a maintenance cost, and a stale spec is worse than none.
+Read bottom-up. Each layer arrives when its trigger fires, never on principle. Every layer costs maintenance, and a stale spec is worse than no spec.
 
-```mermaid
-flowchart BT
-    BASE["Code + repo conventions<br/><i>day one — always present, weakest truth</i>"]
-    VOCAB["Vocabulary<br/><i>one canonical word per concept</i>"]
-    ONTO["Ontology + taxonomy<br/><i>entities, states, rules, closed lists</i>"]
-    SCEN["Scenarios<br/><i>~20 journey stories with permanent IDs</i>"]
-    DEC["Decisions<br/><i>status ladder: exploring → firm, with expiry</i>"]
-    PRD["PRD (thin)<br/><i>why, who, scope + cuts, quality bars</i>"]
-    DESIGN["Design + content<br/><i>pinned Figma baseline + deltas · keyed copy</i>"]
-
-    BASE -->|"add when: synonym drift — session vs workout"| VOCAB
-    VOCAB -->|"add when: agent invents fields and enum values"| ONTO
-    ONTO -->|"add when: 'works but wrong' behavior appears"| SCEN
-    SCEN -->|"add when: settled choices get relitigated"| DEC
-    DEC -->|"add when: scope and 'why' debates keep recurring"| PRD
-    PRD -->|"add when: designer becomes the bottleneck"| DESIGN
-
-    classDef contract fill:#E4EFEB,stroke:#0E6B5B,color:#0E6B5B
-    classDef steering fill:#F4EBDB,stroke:#B27A24,color:#B27A24
-    classDef base fill:none,stroke:#888,color:#555
-    class VOCAB,ONTO,SCEN contract
-    class DEC,PRD,DESIGN steering
-    class BASE base
-```
+![The spec ladder — seven layers, each with the trigger that adds it](fig1-spec-ladder.png)
 
 *Teal = machine-checkable contract · Amber = human steering · Outline = always-on base*
 
-> **The minimum viable start** for a new area is just *base + vocabulary + scenarios* — roughly three pages. That already kills the two biggest agent failure modes: naming drift and invented behavior.
+> **Start a new area with base + vocabulary + scenarios** — roughly three pages. That alone kills the two biggest agent failure modes: naming drift and invented behavior.
 
-## What each layer buys — for the agent, and for you
+## What each layer buys
 
 | Layer | The agent gets | You get |
-|---|---|---|
-| `VOCABULARY` | Deterministic naming — no synonym guessing | Your own domain words back; near-zero reading cost |
-| `ONTOLOGY` | A generative source for schema, types, validators | A picture of "what exists" you can correct without reading code |
+| :---- | :---- | :---- |
+| `VOCABULARY` | Deterministic naming — no synonym guessing | Your own domain words back, at near-zero reading cost |
+| `ONTOLOGY` | A generative source for schema, types, validators | A picture of what exists, correctable without reading code |
 | `SCENARIOS` | Concrete acceptance targets to verify against | Plain-language stories anyone can veto |
-| `decisions/` | Knows where to hold firm vs explore | See what's settled without asking anyone |
-| `PRD` | Tiebreaker for intent | The strategic conversation, minus the definitions |
-| `DESIGN` + `CONTENT` | Pixel truth + copy it must never transcribe | Copy edits with no designer on the critical path |
+| `decisions/` | Knowledge of where to hold firm and where to explore | Visibility into what's settled, without asking anyone |
+| `PRD` | A tiebreaker for intent | The strategic conversation, minus the definitions |
+| `DESIGN` + `CONTENT` | Pixel truth, plus copy it must never transcribe | Copy edits with no designer on the critical path |
 
- **scenarios are the steering sweet spot** — the single place where agent precision and human readability peak together. A domain expert can read a scenario and say "that's not how it should feel" without knowing what an invariant is. If you read only one spec file, read that one.
+**Scenarios are the steering sweet spot** — the one place where agent precision and human readability peak together. A domain expert reads a scenario and says "that's not how it should feel" without knowing what an invariant is. Read one spec file, read that one.
+
+Insert note: on how certain projects will favor heavy reliance on story/issue detail but that is team dependent. Many people get lost in the web of stories. And stories start to overlap and duplicate quickly, the larger the team the bigger the maintenance becomes
 
 ## Three concerns, one shared center
 
-Everything we argue about falls into three overlapping questions: is it *valuable*, is it *feasible*, is it *usable*. The layers sort themselves onto that map — and two artifacts sit dead center, read and written by all three concerns.
+Every argument we have reduces to three questions: is it *valuable*, is it *feasible*, is it *usable*. The layers sort themselves onto that map. Two artifacts sit dead center, read and written by all three concerns.
 
-```mermaid
-flowchart TB
-    V["Valuable<br/><i>PRD · scope decisions</i>"]
-    F["Feasible<br/><i>ONTOLOGY · tech decisions</i>"]
-    U["Usable<br/><i>DESIGN.md · CONTENT.md</i>"]
-    C["VOCABULARY + SCENARIOS<br/><i>the shared center</i>"]
+![Valuable, Feasible, Usable — with Vocabulary and Scenarios at the shared center](fig2-venn.png)
 
-    V ---|"multi-lens DRs"| F
-    V ---|"design+scope DRs"| U
-    F ---|"design+tech DRs"| U
-    V --> C
-    F --> C
-    U --> C
+Shared language and journey stories are the only artifacts all three concerns touch — the first layers we add, the last we'd cut. The pairwise edges hold the decision records with multiple lenses: the contested ones.
 
-    classDef concern fill:none,stroke:#B27A24,color:#B27A24
-    classDef center fill:#E4EFEB,stroke:#0E6B5B,color:#0E6B5B
-    class V,F,U concern
-    class C center
-```
+## Decisions: firm ground vs. open ground
 
-The shared language and the journey stories are the only artifacts all three concerns touch — which is why they're the first layers added and the last we'd ever cut. The pairwise edges are where decision records with multiple lenses live: the contested ones.
+Teammates and agents share one hard question: what's safe to build on, and what's still in play? One `decisions/` folder answers it — one file per decision, a permanent ID (`DR-044`), and one field that carries the weight.
 
-## Decisions: separating firm ground from open ground
+**`status`** runs `exploring` → `provisional` → `firm`, with `superseded` for anything replaced. Promotion is always a human act, and provisional records carry an expiry so they can't quietly harden into permanent ones.
 
-The hardest thing for both teammates and agents is knowing what's safe to build on versus what's still in play. We solve it with a single `decisions/` folder — one file per decision, permanent ID (`DR-044`), and two fields that do the work.
-
-**`status`** — how settled it is. This answers the only question that matters: *may I change this?*
-
-```mermaid
-stateDiagram-v2
-    exploring: exploring — propose, don't build on it
-    provisional: provisional — build on it, keep it isolated
-    firm: firm — constraint, don't relitigate
-    superseded: superseded — historical only
-
-    [*] --> exploring
-    exploring --> provisional: promoted by a human
-    provisional --> firm: promoted by a human
-    provisional --> superseded: replaced, never edited in place
-    firm --> superseded: replaced, never edited in place
-```
-
-Two rules the diagram can't show:
-
-- **Promotion is a deliberate human act** — a decision is never promoted because the code now depends on it.
-- **Provisional records require an `expires` date or trigger** (e.g. `expires: 2026-11-01`). A provisional decision without one is a permanent decision nobody admitted to making — it's refused at the door. Past its expiry, a record goes stale *loudly*: surfaced, not silently honored.
-
-**`lens`** — who cares about it: `scope` · `technical` · `design` · `operational` · `experimental`. Lenses are tags for filtering and knowing whom to ask; they carry no authority. Only `status` does. And every record ends with one load-bearing line: *what would change my mind* — the observable condition that reopens it.
+Mechanics — expiry triggers, lenses, and how a record gets reopened — are in [[Decision Records: The Operating Model|Decision-Records-Operating-Model]].
 
 ## Design and copy, without bottlenecks
 
-The design docs (Figma or other Prototype) are a **pinned baseline**, not live truth. We reference a named version; current design truth = that baseline + a short delta log in the spec. That one move unlocks three tiers of change:
+Figma or another prototype is a **pinned baseline**, not live truth. We reference a named version; current design truth = that baseline plus a short delta log in the spec. That single move unlocks three tiers of change:
 
 | Change | Process | Who's involved |
-|---|---|---|
+| :---- | :---- | :---- |
 | **Copy** | Edit the keyed string in `CONTENT.md`; git is the log | Product, marketing, support — directly. Legal-owned keys need legal. |
-| **Small structural** | Decision record + one delta line, composed from existing patterns | Anyone proposes; no designer blocking |
+| **Small structural** | Decision record plus one delta line, composed from existing patterns | Anyone proposes; no designer blocking |
 | **New pattern** | Recorded as `exploring`; designer review is the trigger | Designer — on purpose |
 
-Every string in the product has a key (`data.consent.body`), a status, and an owner. Figma text layers are samples; agents are forbidden from transcribing them. When deltas pile up on a frame, the designer absorbs them into Figma on their own cadence and we re-pin — the loop closes without ever blocking on it.
+Every string in the product carries a key (`data.consent.body`), a status, and an owner. Figma text layers are samples, and agents are forbidden from transcribing them. When deltas pile up on a frame, the designer absorbs them into Figma on their own cadence and we re-pin. The loop closes without ever blocking on it.
 
-## What changes for you
+## What this might change for you
 
-**Design** — You own layout, components, interaction, and length constraints — not copy. Small changes accumulate as deltas you absorb on your schedule; genuinely new patterns still come to you first. → `spec/training/DESIGN.md`
+By role, if we adopt it:
 
-**Marketing** — Every user-facing string is a keyed line you can edit directly. No design file, no dev ticket for wording. Legal-locked keys are clearly marked. → `spec/training/CONTENT.md`
+**Design** — You own layout, components, interaction, and length constraints. You don't own copy. Small changes accumulate as deltas you absorb on your schedule; genuinely new patterns still come to you first. → `spec/training/DESIGN.md`
 
-**Product** — You write the thin PRD and the scenarios, own most decision records, and promote them from exploring to firm. Scope debates end in a DR, not a thread. → `SCENARIOS.md` · `decisions/`
+**Marketing** — You own every user-facing string as a keyed line you edit directly. No design file, no dev ticket for wording. Legal-locked keys are marked. → `spec/training/CONTENT.md`
 
-**Devs** — Generate schema, types, and model tests from the ontology. Plans cite scenario IDs and get deleted after. If the spec is silent, ask — then write the answer back. → `ONTOLOGY.md` · `spec/CLAUDE.md`
+**Product** — You own the thin PRD, the scenarios, and most decision records, including promotion from exploring to firm. Scope debates end in a DR, not a thread. → `SCENARIOS.md` · `decisions/`
+
+**Devs** — You generate schema, types, and model tests from the ontology. Plans cite scenario IDs and get deleted afterward. When the spec is silent, ask — then write the answer back. → `ONTOLOGY.md` · `spec/CLAUDE.md`
 
 **Tech lead** — You guard the precedence chain and the same-commit rule: behavior changes without spec changes bounce in review. You decide when a slice earns its next layer. → `spec/CLAUDE.md`
 
-**Domain experts** — Scenarios are written in your vocabulary, on purpose. Reading them and saying "that's not how it works" is the highest-leverage steering anyone can do. → `SCENARIOS.md` · `VOCABULARY.md`
+**Domain experts** — You read scenarios written in your vocabulary and say "that's not how it works." That's the highest-leverage steering available to anyone here. → `SCENARIOS.md` · `VOCABULARY.md`
 
-**Customer support** — Scenario IDs give you precise language for bugs: "SC-014 doesn't hold — I got a duplicate workout" routes itself. You'll also spot missing scenarios before anyone. → `SCENARIOS.md`
-
-## Click through: the sample repo
-
-There's a small worked example — **Stride**, a fictional coaching app — with every file filled in. The fastest way to get it is to trace one change end to end: compliance required explicit consent, and the trail runs through six artifacts, all findable by grepping one ID.
-
-```text
-stride-sample/
-├── CLAUDE.md                 ← one router line: "read spec/ first"
-├── spec/
-│   ├── CLAUDE.md             ← the rulebook: read order, precedence, hard rules
-│   ├── VOCABULARY.md         ← Athlete, not user/member/client
-│   ├── decisions/
-│   │   ├── DR-041-…          ← provisional, expires 2026-11-01
-│   │   └── DR-044-…          ← firm: consent checkbox  ①
-│   └── training/
-│       ├── ONTOLOGY.md       ← INV-09: consent required  ②
-│       ├── TAXONOMY.md
-│       ├── SCENARIOS.md      ← SC-021: the consent story  ③
-│       ├── PRD.md            ← thin: why, who, cuts
-│       ├── DESIGN.md         ← pinned baseline + DR-044 delta  ④
-│       └── CONTENT.md        ← data.consent.* keys, legal-owned  ⑤
-├── docs/plans/…consent…      ← disposable; cites, never defines  ⑥
-└── tests/
-    ├── sc-014-…test.ts       ← hand-written, tagged SC-014
-    └── derived/inv-07-…      ← generated from the invariant
-```
-
-Also worth a look while you're in there: `DR-041` is a decision to do onboarding by hand instead of building an integration — *provisional, with an expiry date*. When that date passes, it goes stale loudly instead of quietly becoming permanent.
+**Customer support** — You get precise bug language from scenario IDs: "SC-014 doesn't hold — I got a duplicate workout" routes itself. You'll also spot missing scenarios before anyone else. → `SCENARIOS.md`
 
 ## Ground rules, on one hand
 
 When artifacts disagree, earlier wins:
 
-```text
-VOCABULARY → ONTOLOGY → TAXONOMY → SCENARIOS → firm decisions → PRD → plans → code
+```
+contracts (VOCABULARY → ONTOLOGY → TAXONOMY → SCENARIOS)
+  → firm decisions
+  → surfaces (CONTENT → DESIGN)
+  → PRD → plans → code
 ```
 
-And five rules that hold the whole thing up:
+One qualifier inside `surfaces`: **CONTENT outranks DESIGN on wording; DESIGN's length and layout constraints bind CONTENT.** A string that busts a 40-character constraint isn't winning a precedence fight, it's non-compliant, the same way a scenario contradicting an invariant is.
+
+Five rules:
 
 1. **No noun outside the vocabulary.** A missing term is a question, not an invitation.
 2. **IDs are permanent.** `SC-021` and `DR-044` mean the same thing forever.
 3. **Derive what you can, hand-write what you must.** Rule-restatements are generated; journeys are authored.
-4. **Provisional needs an expiry.** Otherwise it's a permanent decision nobody admitted to making.
+4. **Provisional needs an expiry.** Otherwise it's a permanent decision nobody admitted making.
 5. **Same-commit.** A behavior change without its spec change is drift, and it bounces.
 
-Questions, objections, and "that scenario is wrong" are exactly the point — that's the steering this structure exists to make cheap. Start with `SCENARIOS.md`.
+Questions, objections, and "that scenario is wrong" are the point. Cheap steering is what we're after.
