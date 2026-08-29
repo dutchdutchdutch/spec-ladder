@@ -17,7 +17,10 @@ is the rulebook everything else obeys.
 [spec/training/SCENARIOS.md](spec/training/SCENARIOS.md) — plain-language
 stories of how the product behaves, each with a permanent ID. If a story is
 wrong, that's steering: say so. Then
-[spec/training/PRD.md](spec/training/PRD.md) for the why and the cuts.
+[spec/training/VALUE-STREAM.md](spec/training/VALUE-STREAM.md) — the end-to-end
+map, a loop closed by results and Feedback; "there's a whole stage missing" is
+steering too. Then [spec/training/PRD.md](spec/training/PRD.md) for the why and
+the cuts.
 
 **Designers:** [spec/training/DESIGN.md](spec/training/DESIGN.md) shows how the
 Figma baseline is pinned and how small changes accumulate as deltas without you

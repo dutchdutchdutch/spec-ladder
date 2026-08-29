@@ -11,9 +11,10 @@ Before writing or changing any code:
 1. **`VOCABULARY.md`** — canonical terms. Never use a noun that isn't here.
 2. **`ONTOLOGY.md`** — entities, attributes, relationships, states, invariants.
 3. **`TAXONOMY.md`** — closed classification lists (these *are* the enums).
-4. **`SCENARIOS.md`** — journey anchors with stable `SC-###` IDs.
-
-5. **`decisions/`** — all records with `status: firm`. These are constraints.
+4. **`VALUE-STREAM.md`** — ordered stages with stable `VS-#` IDs; entry/exit
+   are ontology states. The stream is a loop: adaptation re-enters authoring.
+5. **`SCENARIOS.md`** — journey anchors with stable `SC-###` IDs.
+6. **`decisions/`** — all records with `status: firm`. These are constraints.
 
 Read **`PRD.md`** only when you need intent, scope rationale, or non-functional
 targets. It explains *why*; it does not define *what*.
@@ -26,7 +27,7 @@ artifacts — they cite this directory, they never define it.
 When two artifacts conflict, resolve in this order:
 
 ```
-VOCABULARY → ONTOLOGY → TAXONOMY → SCENARIOS → firm decisions → PRD → plans → existing code
+VOCABULARY → ONTOLOGY → TAXONOMY → VALUE-STREAM → SCENARIOS → firm decisions → PRD → plans → existing code
 ```
 
 Decisions that are not `firm` do not participate in precedence at all — see below.
