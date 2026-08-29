@@ -13,7 +13,11 @@ invitation to invent.
 | `Exercise` | A named movement performed within a Workout | movement, drill |
 | `Set` | One logged unit of an Exercise (reps × load or duration) | round, rep-group |
 | `Intake` | The onboarding flow capturing an Athlete's goals, history, and consent | onboarding form, signup, questionnaire |
+| `Feedback` | An Athlete's subjective report on a completed Workout (effort, notes) | review, rating, comment, survey |
 | `Consent` | The Athlete's recorded agreement to data processing terms | agreement, acceptance, opt-in |
+
+Note on "results": an Athlete's results ARE their logged `Set`s. There is no
+separate Result entity — do not introduce one.
 
 Promotion rule: a term used by more than one slice lives here. A slice must not
 redefine a root term with a different meaning.

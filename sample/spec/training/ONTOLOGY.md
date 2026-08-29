@@ -27,6 +27,7 @@ Relationships: has many `Program` (0..n). At most one Program `active` at a time
 | athlete_id | uuid → Athlete | required |
 | goal_type | taxonomy: goal_type | closed list, see TAXONOMY.md |
 | status | enum: `draft` \| `published` \| `active` \| `completed` \| `archived` | |
+| prior_program_id | uuid → Program? | set when this Program adapts a completed one; see INV-13 |
 
 Relationships: has many `Workout` (0..n), ordered. Deleting a draft Program
 cascades to its Workouts; published+ Programs are never deleted, only archived.
@@ -62,6 +63,15 @@ completed).
 | duration_s | int? | |
 | logged_at | datetime | |
 
+### Feedback
+| Attribute | Type | Notes |
+|---|---|---|
+| id | uuid | |
+| workout_id | uuid → Workout | required; at most one Feedback per Workout (INV-12) |
+| effort | int 1–10 | perceived effort |
+| note | string? | |
+| submitted_at | datetime | immutable once set |
+
 ## Invariants
 
 | ID | Invariant |
@@ -73,6 +83,8 @@ completed).
 | INV-07 | A `Program` may not transition `draft → published` unless it contains at least one `Workout`. |
 | INV-09 | An `Athlete` cannot proceed past `Intake` unless `consent_given = true`, captured by an explicit affirmative action (see DR-044). `consent_recorded_at` is set once and never modified. |
 | INV-11 | A `Workout` completed offline syncs exactly once; sync must not create a duplicate Workout or duplicate Sets. |
+| INV-12 | `Feedback` attaches only to a `Workout` with status `completed` or `completed_pending_sync`, at most one per Workout, immutable after `submitted_at`. |
+| INV-13 | A `Program` drafted for an `Athlete` who has a `completed` Program must set `prior_program_id` to that Program. Programming adapts; it does not restart blind. |
 
 Invariants are model-level truth. Tests for them are **derived**, not
 hand-written — see `SCENARIOS.md` for what does get hand-written.
