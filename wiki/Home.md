@@ -94,6 +94,8 @@ Figma or another prototype is a **pinned baseline**, not live truth. We referenc
 
 Every string in the product carries a key (`data.consent.body`), a status, and an owner. Figma text layers are samples, and agents are forbidden from transcribing them. When deltas pile up on a frame, the designer absorbs them into Figma on their own cadence and we re-pin. The loop closes without ever blocking on it.
 
+Copy itself is collaborative — marketing sets tone, design sets register, a copywriter drafts, product owns the hard strings — and every shipped tweak rides the full pipeline, so churn is expensive. The key's `status` carries the distinction: `working` copy ships but is expected to change and batches into sweeps; `firm` copy changes only through its owner. The full model is in [[Content: Working Truth vs Firm Truth|Content-Operating-Model]].
+
 ## Ground rules, on one hand
 
 When artifacts disagree, earlier wins:
@@ -125,7 +127,7 @@ Five of the eight layers are plain language and yours to edit — no design file
 | :---- | :---- | :---- |
 | **Product** | `SCENARIOS.md` · `decisions/` · `VALUE-STREAM.md` | Scope debates end in a decision record, not a thread |
 | **Business owner / domain expert** | `SCENARIOS.md` · `VOCABULARY.md` · `VALUE-STREAM.md` | "That's not how it works" — and "there's a whole stage missing" — are our highest-leverage corrections |
-| **Marketing / support** | `CONTENT.md` | Every user-facing string is a keyed line you change yourself |
+| **Marketing / support** | `CONTENT.md` | Propose any string freely; confirm the ones you own — `working` vs `firm` marks which is which |
 | **Design** | `DESIGN.md` | You absorb small deltas on your cadence; new patterns still route to you first |
 | **Dev / tech lead** | `ONTOLOGY.md` · `spec/CLAUDE.md` | Schema and tests generate from the spec; behavior changes without spec changes bounce |
 
@@ -133,7 +135,7 @@ By role, if we adopt it:
 
 **Design** — You own layout, components, interaction, and length constraints. You don't own copy. Small changes accumulate as deltas you absorb on your schedule; genuinely new patterns still come to you first. → `spec/training/DESIGN.md`
 
-**Marketing** — You own every user-facing string as a keyed line you edit directly. No design file, no dev ticket for wording. Legal-locked keys are marked. → `spec/training/CONTENT.md`
+**Marketing** — You set brand tone as a constraint and propose any string freely; the keys you own, you confirm. No design file, no dev ticket for wording. Legal-locked keys are marked. → `spec/training/CONTENT.md`
 
 **Product** — You own the thin PRD, the scenarios, the value stream, and most decision records, including promotion from exploring to firm. Scope debates end in a DR, not a thread. → `SCENARIOS.md` · `decisions/` · `VALUE-STREAM.md`
 

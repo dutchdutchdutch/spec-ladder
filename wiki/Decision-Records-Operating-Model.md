@@ -2,7 +2,7 @@
 
 **One field carries all the authority: `status`. It answers the only question a teammate or an agent actually has — may I change this?**
 
-Companion to *The Spec Ladder*. That post covers where truth lives. This one covers how settled it is.
+Companion to *The Spec Ladder*. That post covers where truth lives. This one covers how settled it is. Copy runs the same promotion rule with two states — see [[Content: Working Truth vs Firm Truth|Content-Operating-Model]].
 
 ## The four statuses
 
