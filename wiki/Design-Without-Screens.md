@@ -58,6 +58,6 @@ Tickets also mutate. A live-edited ticket reintroduces the drift the ladder exis
 
 ## Copy still has an owner
 
-With no screens, the user-facing strings are error messages, field descriptions, enum labels, and deprecation notices. They go in `CONTENT.md` with a key, a status, and an owner, exactly like button text.
+With no screens, the user-facing strings are error messages, field descriptions, enum labels, and deprecation notices. They go in the content bundle with a key, a status, and an owner, exactly like button text.
 
 Support and legal should own that copy. Developers should stop inventing error text at 6pm on a Friday, and consumers should stop parsing three different phrasings of the same failure.
