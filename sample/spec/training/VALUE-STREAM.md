@@ -1,15 +1,30 @@
 # Value stream — training slice
 
-How value moves through the domain, end to end. Ordered stages, three facts
-each: an actor, entry/exit as ontology states (never prose), and the scenario
-IDs that anchor the stage. Stage IDs (`VS-#`) are permanent, same as SC and DR.
+```
+attested: 2026-08-28 · owner: product
+next attestation due: 2026-11-28 (quarterly), or within 14 days of a
+declared transition (pricing change, new segment, pivot, reorg)
+status: binding — auto-demotes to "under review" (non-binding) during a
+declared transition, until re-attested
+```
+
+How value moves through the domain, end to end. Ordered stages, four facts
+each: an actor, entry/exit as ontology states (never prose), the scenario IDs
+that anchor the stage, and the investment and return per stage. Stage IDs
+(`VS-#`) are permanent, same as SC and DR.
+
+Investment names the *kind* of cost, with time as the prime example — Coach
+time, Athlete time and attention, compute/inference, availability. Coarse
+weights only. Return is the value exchanged. This is what makes the stream a
+prioritization tool: which stage a change cheapens, which return it grows.
 
 **The stream is a loop, not a line.** VS-7 exits back into VS-3: results
 (logged `Set`s) and `Feedback` from one Program inform the draft of the next
 (INV-13). Programming adapts; it is never static.
 
-What this file does NOT hold: cycle times, wait times, or any observed metric
-(dashboards); targets (PRD); per-entity states (ONTOLOGY); journey detail
+What this file does NOT hold: cycle times, wait times, measured costs, or any
+observed metric (dashboards) — investment *kinds* are structural facts, measured
+magnitudes are not; targets (PRD); per-entity states (ONTOLOGY); journey detail
 (SCENARIOS).
 
 ## Stages
@@ -23,6 +38,24 @@ What this file does NOT hold: cycle times, wait times, or any observed metric
 | VS-5 | Training | Athlete (system syncs) | `Program.status = active` | `Program.status = completed` — results accumulate as logged `Set`s (INV-05, INV-11) | SC-014 |
 | VS-6 | Feedback — *rolling: runs per Workout inside VS-5* | Athlete | `Workout.status ∈ {completed, completed_pending_sync}` | `Feedback` attached to the Workout (INV-12) | ⚠ none |
 | VS-7 | Adaptation | Coach | `Program.status = completed` ∧ its Workouts carry `Set`s and `Feedback` | next `Program.status = draft` with `prior_program_id` set (INV-13) → **re-enters VS-3** | ⚠ none |
+
+## Investment and return per stage
+
+Kinds and coarse weights, no measured magnitudes.
+
+| # | Investment | Return |
+|---|---|---|
+| VS-1 | Coach time, **high** — manual by design (DR-041) | Athlete record + coaching relationship |
+| VS-2 | Athlete time, low | Provable consent; legal safety (INV-09) |
+| VS-3 | Coach time + expertise, high | A sellable, publishable Program |
+| VS-4 | Athlete attention, low | Commitment — an `active` Program |
+| VS-5 | Athlete time/effort, high; sync compute + offline availability, medium | Training results (logged `Set`s), adherence data |
+| VS-6 | Athlete attention, seconds per Workout | Subjective signal that fuels adaptation |
+| VS-7 | Coach time, medium; inference compute if assisted, medium | A retained Athlete and an adapted Program — the loop's compounding value |
+
+Reading it for prioritization: VS-1's high manual cost is deliberate and expiring
+(DR-041); VS-7's return compounds across loops, which is why adaptation outranks
+polish elsewhere on the roadmap.
 
 ## Known gaps (visible on purpose)
 

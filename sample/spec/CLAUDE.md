@@ -13,6 +13,10 @@ Before writing or changing any code:
 3. **`TAXONOMY.md`** — closed classification lists (these *are* the enums).
 4. **`VALUE-STREAM.md`** — ordered stages with stable `VS-#` IDs; entry/exit
    are ontology states. The stream is a loop: adaptation re-enters authoring.
+   Slow-moving truth: kept true by owner attestation (quarterly, or within 14
+   days of a declared transition), not by the same-commit rule. If its header
+   says "under review", treat it as non-binding until re-attested. A missed
+   attestation is staleness — surface it; mere non-editing is not.
 5. **`SCENARIOS.md`** — journey anchors with stable `SC-###` IDs.
 6. **`decisions/`** — all records with `status: firm`. These are constraints.
 
