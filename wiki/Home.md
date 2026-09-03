@@ -62,8 +62,6 @@ The unit is the capability, not the test case: one anchor per major use case, wh
 
 **Scenarios set the floor, not the ceiling.** They name the behaviours that must hold and anchor the integration and end-to-end coverage — roughly twenty per slice, which is what keeps them readable. They are not the test plan. An agent covers far more than the anchors, and how thoroughly it covers — the mix of unit, component, and contract tests, the coverage we hold to — follows from the architecture and belongs with the engineering decisions. That work matters; it just solves a different problem. Mix the two and the one file everyone actually reads stops being readable.
 
-Insert note: on how certain projects will favor heavy reliance on story/issue detail but that is team dependent. Many people get lost in the web of stories. And stories start to overlap and duplicate quickly, the larger the team the bigger the maintenance becomes
-
 ## The value stream: the spine between ontology and scenarios
 
 One step, one question no other layer holds: **in what order does value move through the domain, and who moves it?** For us: intake → consent → program authored → published → athlete training → outcomes.
