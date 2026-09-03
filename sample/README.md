@@ -35,12 +35,13 @@ edits to this file — no designer, no dev required for the words themselves.
 [spec/VOCABULARY.md](spec/VOCABULARY.md) are the contracts you generate from.
 [spec/decisions/](spec/decisions/) tells you what's firm and what's open.
 [docs/plans/](docs/plans/) shows a disposable plan citing scenario IDs, and
-[tests/](tests/) shows the SC-tag traceability convention.
+[tests/](tests/) shows the SC-tag traceability convention. Budgets and technical
+constraints are not in `spec/` at all — [docs/adr/](docs/adr/) holds them.
 
 ## The chain in one line
 
 ```
-VOCABULARY → ONTOLOGY → TAXONOMY → SCENARIOS → firm decisions → PRD → plans → code
+VOCABULARY → ONTOLOGY → TAXONOMY → VALUE-STREAM → SCENARIOS → firm decisions → PRD → plans → code
 ```
 
 Earlier beats later. Non-firm decisions don't participate at all.
@@ -54,3 +55,7 @@ Earlier beats later. Non-firm decisions don't participate at all.
   an expiry. When the date passes, it goes stale loudly, not silently.
 - The plan in `docs/plans/` defines nothing. It only cites. Delete it after
   execution and no truth is lost.
+- [PRD.md](spec/training/PRD.md) has no non-functional targets. They split four
+  ways: a scenario, a content key, a design constraint, and one real budget in
+  [ADR-001](docs/adr/ADR-001-offline-sync-budget.md). `spec/` is what the
+  disciplines agree on; `docs/` is where engineering keeps its own truth.

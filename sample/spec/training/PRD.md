@@ -22,13 +22,18 @@ Workout logging with offline sync (SC-014), explicit consent (SC-021, DR-044).
 **Deliberately cut:** self-serve athlete signup (until DR-041 expires),
 payments, messaging, EHR integration (rejected in DR-041), wearable import.
 
-## Non-functional targets
+## Non-functional targets — not here
 
-- Offline logging: full Workout logging with zero connectivity; sync < 30s
-  after reconnect.
-- Consent step: meets legal's approved wording exactly (CONTENT.md keys with
-  `owner: legal`).
-- Athlete app usable one-handed mid-workout.
+Budgets and technical constraints live in `docs/adr/`, outside `spec/`. The
+list that used to sit here split four ways, which is the normal outcome:
+
+- *Full Workout logging with zero connectivity* — functional, and observable in
+  a single run. It is **SC-014**, not a target.
+- *Consent uses legal's approved wording exactly* — a content key with
+  `owner: legal`, in `CONTENT.md`.
+- *Usable one-handed mid-workout* — a design constraint, in `DESIGN.md`.
+- *Sync completes within 30 seconds of reconnect* — the only real budget, and
+  the only one that left the ladder. **ADR-001**.
 
 ## Success metrics
 

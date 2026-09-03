@@ -32,6 +32,16 @@ Read bottom-up. Each layer arrives when its trigger fires, never on principle. E
 
 > **Start a new area with base + vocabulary + scenarios** — roughly three pages. That alone kills the two biggest agent failure modes: naming drift and invented behavior.
 
+## What earns a rung — and what doesn't
+
+**The ladder holds what more than one discipline has to agree on.** That is the whole test. A bigger, longer-lived solution needs more rungs because more people have to stay aligned on it — never because the engineering got harder. Anything only one discipline ever has a view on belongs in that discipline's own area, not on the ladder.
+
+So **non-functional requirements are not a rung, and never become one.** Latency budgets, throughput, uptime, threat models, coverage targets, and the architecture that meets them are engineering's to set and engineering's to meet. They live in architecture decision records under `docs/`, next to plans — referenced from `spec/CLAUDE.md`, never folded into the layers. The folder boundary is the discipline boundary: `spec/` is what we have to agree on together, `docs/` is where a discipline keeps its own working truth.
+
+Most of what gets filed as "non-functional" splits on inspection, and doing the split beats dumping the whole list in one place. *Works offline* is a scenario. *Consent uses legal's exact wording* is a content key with `owner: legal`. *Usable one-handed* is a design constraint. What's left — *sync completes within 30 seconds* — is the real budget, and only that goes to the ADR.
+
+**The test: a scenario asks whether the capability happened; a budget asks how well, under what load, and how safely.** The first you can see in a single run. The second needs a measurement regime, and a measurement regime is not something a domain expert can veto by reading it.
+
 ## What each layer buys
 
 | Layer | The agent gets | You get |
@@ -39,12 +49,16 @@ Read bottom-up. Each layer arrives when its trigger fires, never on principle. E
 | `VOCABULARY` | Deterministic naming — no synonym guessing | Your own domain words back, at near-zero reading cost |
 | `ONTOLOGY` | A generative source for schema, types, validators | A picture of what exists, correctable without reading code |
 | `VALUE-STREAM` | Sequencing context — the state of the world before and after what it's building, and which handoffs are deliberately human | The end-to-end map of how value moves, on one page |
-| `SCENARIOS` | Concrete acceptance targets to verify against | Plain-language stories anyone can veto |
+| `SCENARIOS` | The functional done criteria to build and verify against | Plain-language stories anyone can veto — one per capability |
 | `decisions/` | Knowledge of where to hold firm and where to explore | Visibility into what's settled, without asking anyone |
 | `PRD` | A tiebreaker for intent | The strategic conversation, minus the definitions |
 | `DESIGN` + `CONTENT` | Pixel truth, plus copy it must never transcribe | Copy edits with no designer on the critical path |
 
 **Scenarios are the steering sweet spot** — the one place where agent precision and human readability peak together. A domain expert reads a scenario and says "that's not how it should feel" without knowing what an invariant is. Read one spec file, read that one.
+
+**Scenarios carry "done."** A capability is done when its scenarios pass — not when the ticket closes, and not when the demo looks right. That is the layer's real job, and it pairs with the one below: **decisions define what's settled; scenarios define what's done.** Both bind the moment a named person promotes them.
+
+The unit is the capability, not the test case: one anchor per major use case, which is what keeps the count low enough to read. Resist writing a scenario per validation rule — those derive from the ontology. This is not the team's story-level definition of done, which is one checklist applied to every ticket; these are the criteria for one capability, different every time. And it is *functional* done: did the capability happen, for this user, with this result. How fast, under what load, and how safely has a different home.
 
 **Scenarios set the floor, not the ceiling.** They name the behaviours that must hold and anchor the integration and end-to-end coverage — roughly twenty per slice, which is what keeps them readable. They are not the test plan. An agent covers far more than the anchors, and how thoroughly it covers — the mix of unit, component, and contract tests, the coverage we hold to — follows from the architecture and belongs with the engineering decisions. That work matters; it just solves a different problem. Mix the two and the one file everyone actually reads stops being readable.
 

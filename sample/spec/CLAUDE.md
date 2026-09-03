@@ -20,11 +20,17 @@ Before writing or changing any code:
 5. **`SCENARIOS.md`** — journey anchors with stable `SC-###` IDs.
 6. **`decisions/`** — all records with `status: firm`. These are constraints.
 
-Read **`PRD.md`** only when you need intent, scope rationale, or non-functional
-targets. It explains *why*; it does not define *what*.
+Read **`PRD.md`** only when you need intent or scope rationale. It explains
+*why*; it does not define *what*.
 
 Do not treat anything in `docs/plans/` as authoritative. Plans are execution
 artifacts — they cite this directory, they never define it.
+
+**Non-functional requirements are not in this directory.** Latency, throughput,
+uptime, security posture, and test coverage live in `docs/adr/`, with the
+architecture decisions that meet them. Read those when you need a budget or a
+technical constraint. Never treat a budget as a substitute for a scenario, and
+never move a scenario into an ADR because it sounds technical.
 
 ## Precedence
 
@@ -132,8 +138,8 @@ trust — stop and ask before writing code.
 | `VOCABULARY.md` | Canonical term for each concept, aliases to reject | Definitions of behavior |
 | `ONTOLOGY.md` | Entities, attributes + types, relationships + cardinality, states + legal transitions, invariants | UI, copy, sequencing |
 | `TAXONOMY.md` | Closed, versioned classification lists | Anything open-ended |
-| `SCENARIOS.md` | ~20 journey anchors per slice, stable IDs, GWT form | Exhaustive validation cases |
-| `PRD.md` | Problem, users, scope + cuts, flows, NFRs, metrics, tradeoff rationale | Entity or term definitions |
+| `SCENARIOS.md` | Functional done criteria — ~20 journey anchors per slice, stable IDs, GWT form. A capability is done when its scenarios pass. | Exhaustive validation cases; non-functional budgets |
+| `PRD.md` | Problem, users, scope + cuts, flows, metrics, tradeoff rationale | Entity or term definitions; non-functional budgets |
 | `decisions/` | One decision each, with `status`, `lens`, expiry, and the alternative rejected | Entity definitions; anything only `firm` records may constrain |
 
 ## Slice structure
