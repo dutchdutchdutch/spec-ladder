@@ -1,3 +1,4 @@
 .DS_Store
 .critical-reasoning/
 .claude/settings.local.json
+.claude/
