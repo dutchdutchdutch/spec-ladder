@@ -1,0 +1,23 @@
+infographic sequence-ascending-steps
+data
+  title Scope: five levels
+  desc Read bottom-up. Amber = scope. Start with scenarios; add a level when its trigger fires.
+  sequences
+    - label Scenarios
+      desc Twenty stories, permanent IDs, functional done. Trigger: works but wrong.
+      icon clipboard check
+    - label Decisions
+      desc exploring to firm, with expiry. Trigger: choices get relitigated.
+      icon gavel
+    - label Thin PRD
+      desc Why, who, cuts. Trigger: why debates recur.
+      icon file text
+    - label Intents
+      desc One file per release: in, out, why. Trigger: cuts get re-argued.
+      icon door open
+    - label Design + content
+      desc Pinned baseline plus deltas, keyed copy. Trigger: designer bottleneck.
+      icon palette
+  order asc
+theme
+  palette #B27A24 #B27A24 #B27A24 #B27A24 #B27A24

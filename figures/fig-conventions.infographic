@@ -1,0 +1,14 @@
+infographic sequence-ascending-steps
+data
+  title Conventions: two levels
+  desc Read bottom-up. Grey = conventions. A level is added when its trigger fires.
+  sequences
+    - label Repo and code conventions
+      desc Folder layout, test tags, the agent rulebook. Day one.
+      icon folder
+    - label Ways of working
+      desc Ground rules, what wins, slow truth. Trigger: same argument twice.
+      icon users
+  order asc
+theme
+  palette #9AA0A6 #9AA0A6

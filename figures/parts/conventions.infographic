@@ -1,0 +1,10 @@
+infographic sequence-ascending-steps
+data
+  sequences
+    - label Repo and code
+      icon folder
+    - label Ways of working
+      icon users
+  order asc
+theme
+  palette #9AA0A6 #9AA0A6

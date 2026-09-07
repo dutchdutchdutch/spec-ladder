@@ -1,10 +1,10 @@
 # Design without screens
 
-**When a project has no UI, the design layer holds the interface contract. It's a stronger baseline than Figma, and it needs less ceremony.**
+**When a project has no UI, the design level holds the interface contract. It's a stronger baseline than Figma, and it needs less ceremony.**
 
-Companion to *The Spec Ladder*. That post covers the layer and who owns it. This one covers the artifact.
+Companion to [[Scope]] in *The Spec Ladder*. That page covers the level and who owns it. This one covers the artifact.
 
-An API has a UX. The producers and consumers who live in it every day form mental models, hit sharp edges, and pay for inconsistency the same way a user does. The design layer exists for them.
+An API has a UX. The producers and consumers who live in it every day form mental models, hit sharp edges, and pay for inconsistency the same way a user does. The design level exists for them.
 
 ## The artifact, by project type
 
@@ -16,11 +16,11 @@ An API has a UX. The producers and consumers who live in it every day form menta
 | Data product | A data contract such as ODCS, dbt model contracts, DDL for exposed views |
 | CLI | Command grammar, flags, exit codes, and a transcript of a real session |
 
-## This layer is not the ontology
+## This level is not the ontology
 
 The exposed shape diverges from the domain model on purpose. Field names differ from internal ones. You expose a subset. Pagination, cursors, rate-limit headers, error envelopes, and version prefixes live in the interface and nowhere in the domain.
 
-Treating the ontology as the API is the common mistake, and it produces an interface that leaks your internals and can't version independently. That divergence is what earns this layer its own file.
+Treating the ontology as the API is the common mistake, and it produces an interface that leaks your internals and can't version independently. That divergence is what earns this level its own file.
 
 ## What DESIGN.md holds
 
@@ -42,7 +42,7 @@ Keep it short. If the schema can say it, the schema says it.
 | A schema or contract in the repo | The commit. Pinned by construction. | Nothing. Same-commit and contract tests do the work. |
 | Figma, or anything outside the repo | A named version, plus a delta log in `DESIGN.md` | The delta log, and periodic re-pinning |
 
-An OpenAPI file is versioned, diffable, and checkable against the running service. Figma is none of those, which is the only reason the baseline-and-delta ceremony exists. When the contract lives in the repo, that ceremony collapses into ground rule 5 and a contract test.
+An OpenAPI file is versioned, diffable, and checkable against the running service. Figma is none of those, which is the only reason the baseline-and-delta ceremony exists. When the contract lives in the repo, that ceremony collapses into the same-commit rule and a contract test.
 
 ## Golden payloads are the mock
 

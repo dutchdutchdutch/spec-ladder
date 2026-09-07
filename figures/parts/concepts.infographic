@@ -1,0 +1,14 @@
+infographic sequence-ascending-steps
+data
+  sequences
+    - label Vocabulary
+      icon book open
+    - label Taxonomy
+      icon tags
+    - label Ontology
+      icon sitemap
+    - label Value stream
+      icon route
+  order asc
+theme
+  palette #0E6B5B #0E6B5B #0E6B5B #0E6B5B

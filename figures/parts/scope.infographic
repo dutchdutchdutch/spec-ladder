@@ -1,0 +1,16 @@
+infographic sequence-ascending-steps
+data
+  sequences
+    - label Scenarios
+      icon clipboard check
+    - label Decisions
+      icon gavel
+    - label Thin PRD
+      icon file text
+    - label Intents
+      icon door open
+    - label Design + content
+      icon palette
+  order asc
+theme
+  palette #B27A24 #B27A24 #B27A24 #B27A24 #B27A24

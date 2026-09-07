@@ -36,22 +36,13 @@ Needs a real decision about the sample's bundle format and where metadata
 (`status`, `owner`) sits, not just a rename. `README.md` and
 `sample/spec/CLAUDE.md` both reference `CONTENT.md` and would follow.
 
-## Reconcile fig1 with the bundle model
-
-`wiki/fig1-spec-ladder.png` labels the layer `CONTENT`, which is still correct as
-a layer name but implies a markdown file alongside the other rungs. Worth a look
-once the sample settles. Same figure would need redrawing if `intents/` ever
-stopped being explicitly not-a-rung — it currently shows eight layers, which
-stays accurate.
-
 ## Value stream as ontology edges
 
 Exploring whether the value stream can merge into the ontology as an additional
-type of graph connection, rather than living as its own layer.
+type of graph connection, rather than living as its own level.
 
-Two objections stand today: the stream is one of three artifacts at the centre of
-the Venn and is edited directly by business owners, while the ontology is the
-least approachable layer for non-engineers; and the two carry different staleness
+Two objections stand today: the stream is edited directly by business owners,
+while the ontology is the least approachable level for non-engineers; and the two carry different staleness
 regimes (quarterly attestation vs. the same-commit rule) that would collide in
 one file.
 
@@ -59,9 +50,31 @@ The experiment is still worth running, because the residue is the answer. If the
 stages express cleanly as typed edges, the layer is derivable and the separation
 is only about audience. If actor, investment, and return will not sit as edge
 attributes without distortion, that leftover is the definition of what the layer
-holds — and it replaces the current three-reasons argument in Home with something
+holds — and it replaces the current three-reasons argument in Concepts with something
 tested.
 
 Condition that would settle it: if a quarter passes and nobody outside
 engineering has edited `VALUE-STREAM.md`, the audience objection has evaporated
 and the merge becomes right.
+
+## Second pass: spec/CLAUDE.md and the sample
+
+The wiki now says three groups (Conventions, Concepts, Scope), each a short
+ladder, with group-order precedence: Concepts win on meaning, Scope wins on
+behaviour, the thinner level wins inside a group, Conventions sit outside the
+chain. `spec/CLAUDE.md`, `sample/spec/CLAUDE.md` and `sample/README.md` still
+state the old nine-item precedence chain and the eight-layer read order. Bring
+them in line, and fold the taxonomy-before-ontology order into the read order.
+
+## fig3-decision-flow.png at the repo root
+
+Unreferenced by any page or workflow, and older than the three-group rewrite.
+Decide whether it becomes a figure source under `figures/` or gets deleted.
+
+## The three-concerns framing is gone from the wiki
+
+The valuable / feasible / usable Venn and its section were dropped from Home in
+the three-group rewrite. What survives is one sentence on the Scope page: records
+carrying more than one lens are where the three concerns pull against each other.
+If the framing earns a page again, the figure would be rebuilt from a source
+under `figures/`, not restored from the old PNG.

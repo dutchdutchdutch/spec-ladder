@@ -1,0 +1,7 @@
+# One line per part: path | caption | subcaption. Rendered side by side,
+# bottom-aligned, into wiki/fig1-three-ladders.png.
+title: The Spec Ladder: three groups, each a short ladder
+desc: Read each ladder bottom-up. Start with conventions + vocabulary + scenarios; add a level when its trigger fires.
+parts/conventions.infographic | Conventions | How we work
+parts/concepts.infographic | Concepts | What things are
+parts/scope.infographic | Scope | What the product does

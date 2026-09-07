@@ -2,7 +2,7 @@
 
 **Copy is collaborative by nature. The fix for drift isn't one owner — it's one landing spot and one status field. The landing spot is the bundle the product actually ships.**
 
-Companion to *The Spec Ladder*. That post covers where truth lives. This one covers the layer where drift concentrates: the words in the product.
+Companion to [[Scope]] in *The Spec Ladder*. That page covers what the product does. This one covers the level where drift concentrates: the words in the product.
 
 ## Why copy drifts hardest
 
@@ -31,7 +31,7 @@ There is no third status. A legal lock is `firm` plus `owner: legal`.
 
 **One landing spot, and it is the shipped artifact.** Feedback loops may run anywhere — Slack, Figma comments, PR review. Nothing is true until the key changes in the source-language content bundle: the one file the running product reads. Loop output has exactly one place to land, so the almost-final versions stop competing.
 
-The bundle is the layer. It is not a markdown file that generates the bundle, because generation still leaves the same fact in two places, and the copy that runs is the one that wins. Somebody hotfixes the bundle at midnight to close a legal problem, the description goes stale, and the folder has taught everyone it lies. The format is the team's to pick; the rule is that the spec artifact and the runtime artifact are the same file.
+The bundle is the level. It is not a markdown file that generates the bundle, because generation still leaves the same fact in two places, and the copy that runs is the one that wins. Somebody hotfixes the bundle at midnight to close a legal problem, the description goes stale, and the folder has taught everyone it lies. The format is the team's to pick; the rule is that the spec artifact and the runtime artifact are the same file.
 
 **Shipping never promotes.** A string is not firm because it's in production. That's how placeholder copy calcifies into brand voice nobody chose. Promotion from `working` to `firm` is the owner's act, recorded in the commit. Same rule as decisions: humans promote; usage doesn't.
 
@@ -68,7 +68,7 @@ The string, how settled it is, and who confirms it. Nothing else. Constraints ar
 - **Production as confirmation.** "It's been live for months" is not a promotion. A named owner is.
 - **Constraint-owner acting as string-owner.** Design vetoing wording because it owns the register, marketing rewriting consent because it owns tone. Constraints bind. They don't confer the pen.
 - **Feedback residue.** The "final final" version living in a Slack thread. If it didn't land in the bundle, it isn't true.
-- **A second home for the string.** A description that generates the bundle, a spreadsheet the marketing team keeps, an English default inlined in a component. Any of them and the layer is decorative.
+- **A second home for the string.** A description that generates the bundle, a spreadsheet the marketing team keeps, an English default inlined in a component. Any of them and the level is decorative.
 - **Every tweak its own PR.** Death by a thousand pipelines. Batch `working`. Reserve single-string changes for `firm`.
 
 ## The working-truth pattern
@@ -76,18 +76,18 @@ The string, how settled it is, and who confirms it. Nothing else. Constraints ar
 Copy is the clearest instance of a pattern the whole ladder follows. Every kind of truth in the spec has:
 
 1. **One landing spot.** Loops run anywhere, truth lands in one file.
-2. **One status axis.** Working truth vs firm truth, whatever the layer calls it.
+2. **One status axis.** Working truth vs firm truth, whatever the level calls it.
 3. **One accountable confirmer.** Promotion is a named human's act. Usage never promotes: shipping doesn't firm copy, dependent code doesn't firm decisions, accumulated deltas don't re-pin a baseline.
 4. **Free proposal.** Ownership gates confirmation, not contribution.
 
 | Instance | Landing spot | Working truth | Firm truth | Confirmer |
 |---|---|---|---|---|
 | Copy | the content bundle | `working` | `firm` | Key owner |
-| Decisions | `decisions/` | `exploring` / `provisional` | `firm` | A named person ([[Decision Records\|Decision-Records-Operating-Model]]) |
+| Decisions | `decisions/` | `exploring` / `provisional` | `firm` | A named person ([[Decision-Records-Operating-Model\|Decision Records]]) |
 | Design | `DESIGN.md` | deltas | re-pinned baseline | Designer, on their cadence |
 | Scenarios | `SCENARIOS.md` | proposed scenario | active `SC-###` | Product |
 
-The pattern stays a callout here, not a page of its own — the same add-on-pain rule that governs layers governs abstractions. When a fifth instance shows up asking for it, it earns one.
+The pattern stays a callout here, not a page of its own — the same add-on-pain rule that governs levels governs abstractions. When a fifth instance shows up asking for it, it earns one.
 
 ## What to do with this
 

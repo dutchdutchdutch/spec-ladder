@@ -1,0 +1,20 @@
+infographic sequence-ascending-steps
+data
+  title Concepts: four levels
+  desc Read bottom-up. Teal = concepts. Start with vocabulary; add a level when its trigger fires.
+  sequences
+    - label Vocabulary
+      desc One word per concept. Trigger: synonym drift.
+      icon book open
+    - label Taxonomy
+      desc Closed lists. Trigger: agent invents a category.
+      icon tags
+    - label Ontology
+      desc Entities, states, rules. Trigger: agent invents fields.
+      icon sitemap
+    - label Value stream
+      desc Ordered stages, actor, entry and exit states. Trigger: journeys do not compose.
+      icon route
+  order asc
+theme
+  palette #0E6B5B #0E6B5B #0E6B5B #0E6B5B
