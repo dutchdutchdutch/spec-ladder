@@ -1,6 +1,6 @@
 # Decision Records: The Operating Model
 
-**One field carries all the authority: `status`. It answers the only question a teammate or an agent actually has — may I change this?**
+**One field carries all the authority: `status`. It answers the only question a teammate or an agent actually has: may I change this?**
 
 Companion to *The Spec Ladder*. That post covers where truth lives. This one covers how settled it is. Copy runs the same promotion rule with two states — see [[Content: Working Truth vs Firm Truth|Content-Operating-Model]].
 
@@ -29,9 +29,9 @@ stateDiagram-v2
 
 ## Two rules that do the work
 
-**Humans promote; code never does.** A decision is not firm because the implementation now depends on it. Dependency is an argument *for* promotion, made by a person, in the record. Accumulated code is not consent — that's how teams end up defending choices nobody remembers making.
+**Humans promote; code never does.** A decision is not firm because the implementation now depends on it. Dependency is an argument *for* promotion, made by a person, in the record. Accumulated code is not consent. That's how teams end up defending choices nobody remembers making.
 
-**Provisional requires an expiry.** A date (`expires: 2026-11-01`) or a trigger (`expires: when the second enterprise customer onboards`). A provisional record without one is refused at the door: it's a permanent decision nobody admitted to making. Past its expiry, the record goes stale *loudly* — surfaced for review, never silently honored.
+**Provisional requires an expiry.** A date (`expires: 2026-11-01`) or a trigger (`expires: when the second enterprise customer onboards`). A provisional record without one is refused at the door: it's a permanent decision nobody admitted to making. Past its expiry, the record goes stale *loudly*, surfaced for review, never silently honored.
 
 ## Lens: filtering, not authority
 
@@ -39,7 +39,7 @@ stateDiagram-v2
 
 Lens tells you whom to ask and lets you filter the folder. It grants nothing. A `design` record and a `technical` record at the same status are equally binding, and no lens gives its owner a veto over the others.
 
-Records carrying two lenses are the contested ones — where valuable, feasible, and usable collide. Expect the longest context sections there.
+Records carrying two lenses are the contested ones, where the three concerns collide: valuable, feasible, usable. Expect the longest context sections there.
 
 ## The line that makes "don't relitigate" survivable
 
@@ -48,7 +48,7 @@ Every record closes with **what would change my mind**: an observable condition,
 - Weak: *if this becomes a problem.*
 - Strong: *if manual onboarding exceeds four hours per customer.*
 
-Firm decisions aren't permanent. They're closed until a stated condition fires. That distinction is what lets us refuse relitigation without going rigid — the reopening path is written down in advance, by the people who made the call.
+Firm decisions aren't permanent. They're closed until a stated condition fires. That distinction is what lets us refuse relitigation without going rigid. The reopening path is written down in advance, by the people who made the call.
 
 ## Record anatomy
 
@@ -70,8 +70,8 @@ Superseded records add `superseded-by: DR-051` and are **never edited in place**
 ## Failure modes to watch
 
 - **Silent hardening.** Provisional with no expiry, quietly load-bearing eighteen months later.
-- **Promotion by inertia.** Nobody objected, so it's firm. Silence isn't a promotion — a named person is.
-- **Editing in place.** Convenient, and it erases the history the folder exists to hold.
+- **Promotion by inertia.** Nobody objected, so it's firm. Silence isn't a promotion, a named person is.
+- **Editing in place.** Convenient. And it erases the history the folder exists to hold.
 - **Lens as veto.** "That's a technical decision." Lens tags the reader, not the owner.
 - **Records for everything.** A DR is for choices that will otherwise get relitigated. Reversible, uncontested calls belong in the code.
 
