@@ -1,0 +1,3 @@
+[submodule "tools/slopmonster"]
+	path = tools/slopmonster
+	url = https://github.com/ItsssssJack/SlopMonster
